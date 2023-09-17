@@ -9,7 +9,7 @@
   <div style="position: relative;height: 100%;width: 100%">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white" lazy-render
                style="width: 90%;height: 150px;margin: 0 auto">
-      <van-swipe-item v-for="image in images" :key="image">
+      <van-swipe-item v-for="image in Images" :key="image">
         <img :src="image" style="width: 100%;height: 150px"/>
       </van-swipe-item>
     </van-swipe>
@@ -79,6 +79,7 @@ import myAxios from "../plugins/my-axios.js";
 import {showFailToast, showSuccessToast} from "vant";
 import UserCardList from "../components/UserCardList.vue";
 import BlogCardList from "../components/BlogCardList.vue";
+import Images from "../constants/teamImg.ts";
 
 const searching = ref(false)
 const listLoading = ref(false)
@@ -91,14 +92,7 @@ const active = ref(0)
 const blogList = ref([])
 const blogListFinished = ref(false)
 const blogCurrentPage = ref(0)
-const images = [
-  "../../public/indexImages/1.jpeg",
-  "../../public/indexImages/2.jpeg",
-  "../../public/indexImages/3.jpeg",
-  "../../public/indexImages/4.jpeg",
-  "../../public/indexImages/5.jpeg",
-  "../../public/indexImages/6.jpeg",
-]
+
 const blogLoad = async () => {
   blogCurrentPage.value++
   await getBlogList(blogCurrentPage.value)

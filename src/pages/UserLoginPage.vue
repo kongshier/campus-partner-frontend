@@ -3,7 +3,7 @@
     <van-row justify="center">
       <van-image
           width="343"
-          src="../../public/campus.jpg"
+          :src=campusImage
           style="background-position:center"
       />
     </van-row>
@@ -31,7 +31,8 @@
         <van-button style="margin-top: 10px" round block type="primary" native-type="submit">
           登 录
         </van-button>
-        <van-button style="margin-top: 10px;background-color: #28c9bb" round block type="default" native-type="submit"
+        <van-button style="margin-top: 10px;background-color: #4e7abe;color: white" round block type="default"
+                    native-type="submit"
                     to="/user/signup">
           注 册
         </van-button>
@@ -45,6 +46,7 @@ import {ref} from "vue";
 import myAxios from "../plugins/my-axios.js";
 import {showFailToast, showSuccessToast} from "vant";
 import {useRoute, useRouter} from "vue-router";
+import campusImage from "../assets/campus.jpg"
 
 const userAccount = ref('');
 const password = ref('');

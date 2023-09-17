@@ -3,7 +3,7 @@
     <van-row justify="center">
       <van-image
           width="343"
-          src="../../public/campus.jpg"
+          :src=campusImage
           style="background-position:center"
       />
     </van-row>
@@ -70,6 +70,7 @@ import {showFailToast, showNotify, showSuccessToast} from "vant";
 import myAxios from "../plugins/my-axios.js";
 import {useRouter} from "vue-router";
 import 'vant/es/notify/style'
+import campusImage from "../assets/campus.jpg"
 
 const reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 const username = ref('');

@@ -55,7 +55,7 @@
 <script setup lang="ts">
 import {TeamType} from "../models/team";
 import {teamStatusEnum} from "../constants/team.ts";
-import defaultImg from "../../public/defalutTeamImg.jpg"
+import defaultImg from "../assets/defalutTeamImg.jpg"
 import myAxios from "../plugins/my-axios.js";
 import {showConfirmDialog, showFailToast, showSuccessToast} from "vant";
 import {getCurrentUser} from "../services/user.ts";
