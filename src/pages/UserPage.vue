@@ -59,7 +59,12 @@
         </van-grid-item>
         <van-grid-item text="联系作者" @click="customerService">
           <template #icon>
-            <van-icon class-prefix="my-icon" name="fankui" size="23" style="margin-bottom: 8px;color: #0a0dd2"/>
+            <van-icon class-prefix="shier-icon" name="weixin"  size="23" style="margin-bottom: 8px;color: #0ad249"/>
+          </template>
+        </van-grid-item>
+        <van-grid-item text="直达仓库" @click="toRepositories">
+          <template #icon>
+            <van-icon class-prefix="shier-icon" name="gitee" size="23" style="margin-bottom: 8px;color: red"/>
           </template>
         </van-grid-item>
       </van-grid>
@@ -154,6 +159,9 @@ const customerService = () => {
 }
 const toUserUpdatePage = () => {
   router.push("/user/update")
+}
+const toRepositories = () => {
+  window.open("https://gitee.com/kcsen", "_blank");
 }
 
 const toUserSignPage = () => {

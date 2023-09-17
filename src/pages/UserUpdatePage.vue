@@ -12,7 +12,7 @@
                   @click="toEdit('username','昵称',user.username)"/>
         <van-cell title="标签" to="/user/tag" is-link>
           <template #icon>
-            <van-icon name="like-o" style="top: 5px;margin-left: 5px;right: 5px;color: #ff0000"/>
+            <van-icon class-prefix="shier-icon" name="qianming" style="margin-left: 5px;right: 5px;color: #ff0000"/>
           </template>
         </van-cell>
         <van-cell title="个性签名" is-link
@@ -21,25 +21,28 @@
             <van-text-ellipsis :content="user.profile || '还没有填写个性签名'"/>
           </template>
           <template #icon>
-            <van-icon name="award-o" style="top: 5px;margin-left: 5px;right: 5px;color: #ffa600"/>
+            <van-icon class-prefix="shier-icon" name="biaoqianguanli" style="margin-right: 5px;color: #0084ff"/>
           </template>
         </van-cell>
-        <van-cell icon="user-circle-o" title="性别" is-link @click="()=>showPicker=true">
+        <van-cell title="性别" is-link @click="()=>showPicker=true">
           <span v-if="user.gender===1">男</span>
           <span v-if="user.gender===0">女</span>
           <span v-if="user.gender===2">保密</span>
-          <span v-if="!user.gender">{{ "还没有填写性别" }}</span>
           <template #icon>
-            <van-icon v-if="user.gender===1" name="user-circle-o"
-                      style="top: 5px;margin-left: 5px;right: 5px;color: #0029ff"/>
-            <van-icon v-if="user.gender===0" name="user-circle-o"
+            <van-icon v-if="user.gender===1" class-prefix="shier-icon" name="nan"
+                      style="margin-left: 5px;right: 5px;color: #0066ff"/>
+            <van-icon v-if="user.gender===0" class-prefix="shier-icon" name="nv"
                       style="top: 5px;margin-left: 5px;right: 5px;color: #ff0000"/>
             <van-icon v-if="user.gender===2" name="user-circle-o" style="top: 5px;margin-left: 5px;right: 5px"/>
           </template>
         </van-cell>
         <van-cell icon="phone-o" title="电话" is-link :value="user.phone" @click="toEdit('phone','电话',user.phone)"/>
-        <van-cell icon="send-gift-o" title="邮箱" is-link :value="user.email || '还没有填写邮箱'"
-                  @click="toEdit('email','邮箱',user.email)"/>
+        <van-cell title="邮箱" is-link :value="user.email || '还没有填写邮箱'"
+                  @click="toEdit('email','邮箱',user.email)">
+          <template #icon>
+            <van-icon class-prefix="shier-icon" name="youxiang" style="margin-right: 5px;color: #0084ff"/>
+          </template>
+        </van-cell>
         <van-cell icon="setting-o" title="修改密码" is-link to="/update/password"/>
         <van-popup v-model:show="showPicker" round position="bottom">
           <van-picker

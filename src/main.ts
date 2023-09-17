@@ -9,6 +9,7 @@ import "./global.css"
 import BasicLayout from "./layouts/BasicLayout.vue";
 import BlogEditPage from "./pages/BlogEditPage.vue";
 import "../public/icon/iconfont.css"
+import "../public/iconfont/iconfont.css"
 import BlogPage from "./pages/BlogPage.vue";
 import ForgetPasswordPage from "./pages/ForgetPasswordPage.vue";
 import AfterSignUp from "./pages/AfterSignUp.vue";

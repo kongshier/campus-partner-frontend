@@ -13,7 +13,7 @@
         <span v-else>他太懒了，暂无标签</span>
       </template>
       <template #icon>
-        <van-icon name="like-o" style="top: 5px;margin-left: 5px;right: 5px;color: #ff0000"/>
+        <van-icon class-prefix="shier-icon" name="biaoqianguanli" style="margin-right: 5px;color: #0084ff"/>
       </template>
     </van-cell>
     <van-cell title="简介">
@@ -21,17 +21,21 @@
         <van-text-ellipsis :content="user?.profile || '他太懒了，暂无简介'"/>
       </template>
       <template #icon>
-        <van-icon name="award-o" style="top: 5px;margin-left: 5px;right: 5px;color: #ffa600"/>
+        <van-icon class-prefix="shier-icon" name="qianming" style="margin-left: 5px;right: 5px;color: #ff0000"/>
       </template>
     </van-cell>
-    <van-cell icon="user-circle-o" title="性别">
+    <van-cell icon-prefix="shier-icon" icon="nan" title="性别">
       <span v-if="user?.gender===1">男</span>
-      <span v-else-if="user?.gender===0">女</span>
-      <span v-else-if="user?.gender===2">保密</span>
-      <span v-else>该用户暂未填写性别</span>
+      <span v-if="user?.gender===0">女</span>
+      <span v-if="user?.gender===2">保密</span>
     </van-cell>
     <van-cell icon="phone-o" title="电话" :value="user?.phone"/>
-    <van-cell icon="send-gift-o" title="邮箱" :value="user?.email || '他太懒了，暂无邮箱'"/>
+    <van-cell title="邮箱" :value="user?.email || '他太懒了，暂无邮箱'">
+      <template #icon>
+        <van-icon class-prefix="shier-icon" name="youxiang"
+                  style="margin-right: 5px;color: #0084ff"/>
+      </template>
+    </van-cell>
   </van-cell-group>
   <div style="margin: 16px">
     <div v-if="user?.id !== currentUser?.id">
