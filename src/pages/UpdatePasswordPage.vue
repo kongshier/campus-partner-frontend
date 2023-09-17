@@ -10,7 +10,7 @@
   <van-row justify="center">
     <van-image
         width="343"
-        src="../../public/campus.jpg"
+        :src= campusImage
         style="background-position:center"
     />
   </van-row>
@@ -89,6 +89,7 @@ import {useRouter} from "vue-router";
 import {ref} from "vue";
 import myAxios from "../plugins/my-axios.js";
 import {showFailToast, showSuccessToast} from "vant";
+import campusImage from "../assets/campus.jpg"
 
 const one = ref(true)
 const two = ref(false)

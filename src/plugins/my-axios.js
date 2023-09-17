@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const url = process.env.NODE_ENV === "development"
-    ? "http://localhost:8080/api"
-    : "http://partner.kongshier.top";
+    ? "http://localhost:8105/api"
+    : "http://pt.kongshier.top/api";
 
 let myAxios = axios.create({
     baseURL: url

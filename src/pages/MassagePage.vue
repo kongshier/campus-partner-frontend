@@ -72,7 +72,7 @@
       </template>
       <template #icon>
         <div class="icon_area">
-          <van-image src="../../public/favicon.ico" width="26" height="26" round
+          <van-image :src=favicon width="26" height="26" round
                      style="margin-left: 12px;margin-top: 12px"/>
         </div>
       </template>
@@ -101,7 +101,8 @@
 import {onMounted, ref} from "vue";
 import myAxios from "../plugins/my-axios.js";
 import {useRouter} from "vue-router";
-import defaultImg from "../../public/defalutTeamImg.jpg";
+import defaultImg from "../assets/defalutTeamImg.jpg";
+import favicon from "../../public/favicon.ico"
 
 const teamList = ref()
 const likeNum = ref(0)
