@@ -70,7 +70,11 @@ import {showFailToast, showNotify, showSuccessToast} from "vant";
 import myAxios from "../../plugins/my-axios.js";
 import {useRouter} from "vue-router";
 import 'vant/es/notify/style'
+<<<<<<< HEAD:src/pages/user/UserRegisterPage.vue
 import campusImage from "../../assets/campus.jpg"
+=======
+import campusImage from "../assets/campus.jpg"
+>>>>>>> 8ab55d390715761591ba27ce25d08cb2d5d86a24:src/pages/SignUpPage.vue
 
 const reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
 const username = ref('');

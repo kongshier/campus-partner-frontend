@@ -10,6 +10,7 @@ export default {
             resolvers: [VantResolver()],
         }),
     ],
+<<<<<<< HEAD
     // server: {
     //     host: '0.0.0.0',
     //     port: 5173,
@@ -23,3 +24,6 @@ export default {
     //     },
     // }
 };
+=======
+};
+>>>>>>> 8ab55d390715761591ba27ce25d08cb2d5d86a24

@@ -96,8 +96,13 @@ import {useRouter} from "vue-router";
 import {onMounted, ref} from "vue";
 import myAxios from "../../plugins/my-axios.js";
 import {showFailToast, showSuccessToast} from "vant";
+<<<<<<< HEAD:src/pages/user/UserPage.vue
 import {getCurrentUser} from "../../services/user.ts";
 import authorWxImage from "../../assets/defalutTeamImg.jpg"
+=======
+import {getCurrentUser} from "../services/user.ts";
+import authorWxImage from "../assets/defalutTeamImg.jpg"
+>>>>>>> 8ab55d390715761591ba27ce25d08cb2d5d86a24:src/pages/UserPage.vue
 
 let router = useRouter();
 const user = ref()

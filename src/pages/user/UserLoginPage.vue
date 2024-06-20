@@ -48,7 +48,11 @@ import {ref} from "vue";
 import myAxios from "../../plugins/my-axios.js";
 import {showFailToast, showSuccessToast} from "vant";
 import {useRoute, useRouter} from "vue-router";
+<<<<<<< HEAD:src/pages/user/UserLoginPage.vue
 import campusImage from "../../assets/campus.jpg"
+=======
+import campusImage from "../assets/campus.jpg"
+>>>>>>> 8ab55d390715761591ba27ce25d08cb2d5d86a24:src/pages/UserLoginPage.vue
 
 const userAccount = ref('');
 const password = ref('');

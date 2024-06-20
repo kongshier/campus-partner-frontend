@@ -154,11 +154,17 @@ const init = () => {
   if (typeof (WebSocket) == "undefined") {
     showFailToast("您的浏览器不支持WebSocket")
   } else {
+<<<<<<< HEAD
     // 线下
     // let socketUrl = `ws://localhost:8105/api/websocket/${uid}/${stats.value.chatUser.id}`
     // todo 修改为线上
     let socketUrl = `ws://47.121.118.209:8105/api/websocket/${uid}/${stats.value.team.teamId}`
     console.log("目标：" + stats.value.chatUser.id)
+=======
+    // todo 修改为后端启动地址和端口
+    let socketUrl = `ws://localhost:8105/api/websocket/${uid}/${stats.value.team.teamId}`
+    // let socketUrl = `ws://pt.kongshier.top:8105/api/websocket/${uid}/${stats.value.team.teamId}`
+>>>>>>> 8ab55d390715761591ba27ce25d08cb2d5d86a24
     if (socket != null) {
       socket.close();
       socket = null;

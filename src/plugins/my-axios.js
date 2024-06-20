@@ -1,9 +1,15 @@
 import axios from "axios";
 import {showFailToast} from "vant";
 
+<<<<<<< HEAD
 export const URL = process.env.NODE_ENV === "development"
     ? "http://localhost:8105/api"
     : "http://47.121.118.209:8105/api";
+=======
+const url = process.env.NODE_ENV === "development"
+    ? "http://localhost:8105/api"
+    : "http://pt.kongshier.top/api";
+>>>>>>> 8ab55d390715761591ba27ce25d08cb2d5d86a24
 
 let myAxios = axios.create({
     baseURL: URL

@@ -40,7 +40,11 @@ GitHub：https://github.com/kongshier/campus-backend-master
 
 ## 在线体验
 
+<<<<<<< HEAD
 http://47.121.118.209:7101
+=======
+http://pt.kongshier.top
+>>>>>>> 8ab55d390715761591ba27ce25d08cb2d5d86a24
 
 账号可以自行注册，一切聊天、评论需遵守中华人民共和国有关法律规定。
 

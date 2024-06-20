@@ -9,7 +9,7 @@
   <div style="position: relative;height: 100%;width: 100%">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white" lazy-render
                style="width: 90%;height: 150px;margin: 0 auto">
-      <van-swipe-item v-for="image in images" :key="image">
+      <van-swipe-item v-for="image in Images" :key="image">
         <img :src="image" style="width: 100%;height: 150px"/>
       </van-swipe-item>
     </van-swipe>
@@ -92,6 +92,7 @@ const active = ref(0)
 const blogList = ref([])
 const blogListFinished = ref(false)
 const blogCurrentPage = ref(0)
+<<<<<<< HEAD
 const noticeText = ref("校园有着你朗朗书声，有着你写不完的试卷，有着你忘不掉的老师，有着你共同学习的同学，在这里你可以尽情发挥你最好的水平。在这里可以找到志同道合的校友奋笔直追！！");
 const images = ref([
   "https://shierprojectes.oss-cn-guangzhou.aliyuncs.com/2023-09-02/15%20-%20%E5%89%AF%E6%9C%AC.png",
@@ -126,6 +127,9 @@ const getSwiper = async () => {
     images.value = res.data.data;
   }
 };
+=======
+
+>>>>>>> 8ab55d390715761591ba27ce25d08cb2d5d86a24
 const blogLoad = async () => {
   blogCurrentPage.value++;
   await getBlogList(blogCurrentPage.value);
