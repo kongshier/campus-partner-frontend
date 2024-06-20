@@ -43,11 +43,7 @@
 </template>
 
 <script setup lang="ts">
-<<<<<<< HEAD:src/pages/team/TeamDetailPage.vue
 import defaultImg from "../../assets/defalutTeamImg.jpg"
-=======
-import defaultImg from "../assets/defalutTeamImg.jpg"
->>>>>>> 8ab55d390715761591ba27ce25d08cb2d5d86a24:src/pages/TeamDetailPage.vue
 import {useRoute, useRouter} from "vue-router";
 import {onMounted, ref} from "vue";
 import myAxios from "../../plugins/my-axios.js";

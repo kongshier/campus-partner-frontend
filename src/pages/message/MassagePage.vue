@@ -101,13 +101,8 @@
 import {onMounted, ref} from "vue";
 import myAxios from "../../plugins/my-axios.js";
 import {useRouter} from "vue-router";
-<<<<<<< HEAD:src/pages/message/MassagePage.vue
 import defaultImg from "../../assets/defalutTeamImg.jpg";
 import favicon from "../../../public/favicon.ico"
-=======
-import defaultImg from "../assets/defalutTeamImg.jpg";
-import favicon from "../../public/favicon.ico"
->>>>>>> 8ab55d390715761591ba27ce25d08cb2d5d86a24:src/pages/MassagePage.vue
 
 const teamList = ref()
 const likeNum = ref(0)
