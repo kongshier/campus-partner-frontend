@@ -99,10 +99,10 @@
 
 <script setup>
 import {onMounted, ref} from "vue";
-import myAxios from "../plugins/my-axios.js";
+import myAxios from "../../plugins/my-axios.js";
 import {useRouter} from "vue-router";
-import defaultImg from "../assets/defalutTeamImg.jpg";
-import favicon from "../../public/favicon.ico"
+import defaultImg from "../../assets/defalutTeamImg.jpg";
+import favicon from "../../../public/favicon.ico"
 
 const teamList = ref()
 const likeNum = ref(0)

@@ -36,8 +36,8 @@
 <script setup>
 import {ref} from "vue";
 import {useRouter} from "vue-router";
-import BlogCardList from "../components/BlogCardList.vue";
-import myAxios from "../plugins/my-axios.js";
+import BlogCardList from "../../components/BlogCardList.vue";
+import myAxios from "../../plugins/my-axios.js";
 import {showFailToast, showSuccessToast} from "vant";
 
 let router = useRouter();

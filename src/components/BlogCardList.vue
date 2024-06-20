@@ -26,7 +26,7 @@
         </div>
       </template>
       <template #label>
-        <span style="margin-left: 20px">{{ blog.createTime }}</span>
+        <span style="margin-left: 10px">{{ blog.createTime }}</span>
       </template>
     </van-cell>
   </van-cell-group>

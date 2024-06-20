@@ -43,14 +43,14 @@
 </template>
 
 <script setup lang="ts">
-import defaultImg from "../assets/defalutTeamImg.jpg"
+import defaultImg from "../../assets/defalutTeamImg.jpg"
 import {useRoute, useRouter} from "vue-router";
 import {onMounted, ref} from "vue";
-import myAxios from "../plugins/my-axios.js";
+import myAxios from "../../plugins/my-axios.js";
 import {showFailToast} from "vant";
-import {teamStatusEnum} from "../constants/team.ts";
-import {getCurrentUser} from "../services/user.ts";
-import TeamMemberCardList from "../components/TeamMemberCardList.vue";
+import {teamStatusEnum} from "../../constants/team.ts";
+import {getCurrentUser} from "../../services/user.ts";
+import TeamMemberCardList from "../../components/TeamMemberCardList.vue";
 
 const loading = ref(true)
 const fileList = ref([])

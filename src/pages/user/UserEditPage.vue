@@ -39,10 +39,10 @@
 
 <script setup lang="ts">
 import {useRoute, useRouter} from "vue-router";
-import myAxios from "../plugins/my-axios.js";
+import myAxios from "../../plugins/my-axios.js";
 import {ref} from "vue";
 import {showFailToast, showNotify, showSuccessToast} from "vant";
-import {getCurrentUser} from "../services/user.ts";
+import {getCurrentUser} from "../../services/user.ts";
 
 const codeTime = ref(0)
 const code = ref('')

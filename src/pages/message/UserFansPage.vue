@@ -17,9 +17,9 @@
 </template>
 
 <script setup>
-import UserCardList from "../components/UserCardList.vue";
+import UserCardList from "../../components/UserCardList.vue";
 import {onMounted, ref} from "vue";
-import myAxios from "../plugins/my-axios.js";
+import myAxios from "../../plugins/my-axios.js";
 
 const loading = ref(true)
 const userList = ref([])

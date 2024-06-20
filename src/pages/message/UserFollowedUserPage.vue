@@ -16,8 +16,8 @@
 
 <script setup>
 import {onMounted, ref} from "vue";
-import myAxios from "../plugins/my-axios.js";
-import BlogCardList from "../components/BlogCardList.vue";
+import myAxios from "../../plugins/my-axios.js";
+import BlogCardList from "../../components/BlogCardList.vue";
 
 const loading = ref(true)
 const blogList = ref([])

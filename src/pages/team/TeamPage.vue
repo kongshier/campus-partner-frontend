@@ -28,11 +28,11 @@
 
 <script setup lang="ts">
 import {useRouter} from "vue-router";
-import TeamCardList from "../components/TeamCardList.vue";
+import TeamCardList from "../../components/TeamCardList.vue";
 import {ref} from "vue";
-import myAxios from "../plugins/my-axios.js";
+import myAxios from "../../plugins/my-axios.js";
 import {showConfirmDialog, showFailToast} from "vant";
-import {getCurrentUser} from "../services/user.ts";
+import {getCurrentUser} from "../../services/user.ts";
 
 const active = ref('public')
 let router = useRouter();

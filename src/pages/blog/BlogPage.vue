@@ -147,10 +147,10 @@
 <script setup>
 import {onMounted, ref} from "vue";
 import {useRoute, useRouter} from "vue-router";
-import myAxios from "../plugins/my-axios.js";
-import CommentList from "../components/CommentList.vue";
+import myAxios from "../../plugins/my-axios.js";
+import CommentList from "../../components/CommentList.vue";
 import {showConfirmDialog, showFailToast, showSuccessToast} from "vant";
-import {getCurrentUser} from "../services/user.ts";
+import {getCurrentUser} from "../../services/user.ts";
 
 const showBottom = ref(false)
 let router = useRouter();

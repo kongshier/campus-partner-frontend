@@ -4,16 +4,16 @@
       background="#ecf9ff"
       left-icon="volume-o"
       style="margin-bottom: 10px;margin-top: -20px"
-      text="校园有着你朗朗书声，有着你写不完的试卷，有着你忘不掉的老师，有着你共同学习的同学，在这里你可以尽情发挥你最好的水平。在这里可以找到志同道合的校友奋笔直追！！"
+      :text="noticeText"
   />
   <div style="position: relative;height: 100%;width: 100%">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white" lazy-render
                style="width: 90%;height: 150px;margin: 0 auto">
-      <van-swipe-item v-for="image in Images" :key="image">
+      <van-swipe-item v-for="image in images" :key="image">
         <img :src="image" style="width: 100%;height: 150px"/>
       </van-swipe-item>
     </van-swipe>
-    <van-tabs v-model:active="active">
+    <van-tabs v-model:active="active" @change="tabsChange">
       <van-tab title="🏫校园寻友">
         <van-pull-refresh
             v-model="refreshLoading"
@@ -92,11 +92,44 @@ const active = ref(0)
 const blogList = ref([])
 const blogListFinished = ref(false)
 const blogCurrentPage = ref(0)
+const noticeText = ref("校园有着你朗朗书声，有着你写不完的试卷，有着你忘不掉的老师，有着你共同学习的同学，在这里你可以尽情发挥你最好的水平。在这里可以找到志同道合的校友奋笔直追！！");
+const images = ref([
+  "https://shierprojectes.oss-cn-guangzhou.aliyuncs.com/2023-09-02/15%20-%20%E5%89%AF%E6%9C%AC.png",
+  "https://shierprojectes.oss-cn-guangzhou.aliyuncs.com/2023-09-09/2.jpg",
+  "https://shierprojectes.oss-cn-guangzhou.aliyuncs.com/2023-09/67.jpeg",
+  "https://shierprojectes.oss-cn-guangzhou.aliyuncs.com/2023-09/3.jpeg",
+  "https://shierprojectes.oss-cn-guangzhou.aliyuncs.com/2023-09/43.jpg",
+  "https://shierprojectes.oss-cn-guangzhou.aliyuncs.com/2023-09-30/sunlight.jpg",
+]);
 
+onMounted(async () => {
+  await getNotice();
+  await getSwiper();
+  if (sessionStorage.getItem("tabIndex") === "1") {
+    active.value = 1;
+  }
+});
+const tabsChange = (index) => {
+  sessionStorage.setItem("tabIndex", index);
+};
+
+// 获取到通知信息
+const getNotice = async () => {
+  let res = await myAxios.get("/config/notice");
+  if (res?.data.code !== null) {
+    noticeText.value = res.data.data;
+  }
+};
+const getSwiper = async () => {
+  let res = await myAxios.get("/config/swiper");
+  if (res.data.data !== null) {
+    images.value = res.data.data;
+  }
+};
 const blogLoad = async () => {
-  blogCurrentPage.value++
-  await getBlogList(blogCurrentPage.value)
-}
+  blogCurrentPage.value++;
+  await getBlogList(blogCurrentPage.value);
+};
 
 const getBlogList = async (currentPage) => {
   let res = await myAxios.get("/blog/list", {

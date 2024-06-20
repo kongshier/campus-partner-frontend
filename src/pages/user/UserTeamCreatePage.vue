@@ -37,9 +37,9 @@
 
 <script setup lang="ts">
 import {useRouter} from "vue-router";
-import TeamCardList from "../components/TeamCardList.vue";
+import TeamCardList from "../../components/TeamCardList.vue";
 import {ref} from "vue";
-import myAxios from "../plugins/my-axios.js";
+import myAxios from "../../plugins/my-axios.js";
 import {showFailToast} from "vant";
 
 let router = useRouter();

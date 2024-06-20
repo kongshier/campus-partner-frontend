@@ -42,7 +42,7 @@
 
 <script setup>
 import {onMounted, ref} from "vue";
-import myAxios from "../plugins/my-axios.js";
+import myAxios from "../../plugins/my-axios.js";
 import {useRoute, useRouter} from "vue-router";
 
 const route = useRoute()

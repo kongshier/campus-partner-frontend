@@ -7,7 +7,7 @@
           finished-text="🌈请坚持每天签到哦🌟"
           @load="onLoad"
       >
-        <van-cell center v-for="sign in signList" :key="sign" :title="`&nbsp&nbsp`+sign+'号'">
+        <van-cell v-for="sign in signList" :key="sign" :title="`&nbsp&nbsp`+sign">
           <template #icon>
             <van-icon name="star" style="color: #0854f1"/>
           </template>
@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import {ref} from "vue";
-import myAxios from "../plugins/my-axios";
+import myAxios from "../../plugins/my-axios";
 
 const signList = ref([]);
 const loading = ref(false);
@@ -32,7 +32,7 @@ const refreshing = ref(false);
 
 const onLoad = async () => {
   let res = await myAxios.get("/user/my/list/sign");
-  console.log(res.data)
+  console.log("签到信息：", res)
   if (refreshing.value) {
     signList.value = [];
     refreshing.value = false;
@@ -60,7 +60,7 @@ const onRefresh = () => {
 
 <style scoped>
 #userSignPage {
-  margin: -20px 100px 0;
+  margin: -20px 80px 0;
 
 }
 

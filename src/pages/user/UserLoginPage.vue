@@ -14,6 +14,7 @@
             name="userAccount"
             label="账号"
             placeholder="请输入账号"
+            clearable
             :rules="[{ required: true, message: '请输入用户名' }]"
         />
         <van-field
@@ -21,6 +22,7 @@
             type="password"
             name="password"
             label="密码"
+            clearable
             placeholder="请输入密码"
             :rules="[{ required: true, message: '请输入密码' }]"
         />
@@ -43,10 +45,10 @@
 
 <script setup lang="ts">
 import {ref} from "vue";
-import myAxios from "../plugins/my-axios.js";
+import myAxios from "../../plugins/my-axios.js";
 import {showFailToast, showSuccessToast} from "vant";
 import {useRoute, useRouter} from "vue-router";
-import campusImage from "../assets/campus.jpg"
+import campusImage from "../../assets/campus.jpg"
 
 const userAccount = ref('');
 const password = ref('');

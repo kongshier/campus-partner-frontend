@@ -23,6 +23,7 @@
     </van-tabbar-item>
     <van-tabbar-item v-if="hasMessage" icon="chat-o" name="chat" class="message"
                      @click="checkLogin('/message',3)" dot>
+      消息
     </van-tabbar-item>
     <van-tabbar-item v-else icon="chat-o" name="message" class="message" @click="checkLogin('/message',3)">
       消息

@@ -4,11 +4,7 @@
         :title="title"
         left-arrow
         @click-left="onClickLeft"
-        @click-right="showUserDetail(userId)"
     >
-      <template #right>
-        <van-icon class-prefix="my-icon" name="qita" color="#39a9ed"/>
-      </template>
     </van-nav-bar>
   </van-sticky>
   <div class="chat-container">
@@ -38,7 +34,7 @@ import myAxios from "../plugins/my-axios.js";
 const route = useRoute()
 const router = useRouter()
 const onClickLeft = () => {
-  router.push("/")
+  router.push("/message")
 };
 const stats = ref({
   user: {
@@ -77,22 +73,10 @@ let heartbeatTimer = null;
 const startHeartbeat = () => {
   heartbeatTimer = setInterval(() => {
     if (socket.readyState === WebSocket.OPEN) {
+      console.log("1")
       socket.send("PING");
     }
   }, heartbeatInterval);
-}
-
-// 从路由中拿到用户id
-const userId = route.query.id;
-
-// 显示用户信息
-const showUserDetail = (id) => {
-  router.push({
-    path: "/user/detail",
-    query: {
-      id: id
-    }
-  })
 }
 
 const stopHeartbeat = () => {
@@ -130,7 +114,7 @@ onMounted(async () => {
         })
     privateMessage.data.data.forEach(chat => {
       if (chat.isMy === true) {
-        createContent(null, chat.formUser, chat.text)
+        createContent(null, chat.fromUser, chat.text)
       } else {
         createContent(chat.toUser, null, chat.text, null, chat.createTime)
       }
@@ -140,9 +124,9 @@ onMounted(async () => {
     const hallMessage = await myAxios.get("/chat/hallChat")
     hallMessage.data.data.forEach(chat => {
       if (chat.isMy === true) {
-        createContent(null, chat.formUser, chat.text)
+        createContent(null, chat.fromUser, chat.text)
       } else {
-        createContent(chat.formUser, null, chat.text, chat.isAdmin, chat.createTime)
+        createContent(chat.fromUser, null, chat.text, chat.isAdmin, chat.createTime)
       }
     })
   }
@@ -153,9 +137,9 @@ onMounted(async () => {
         })
     teamMessage.data.data.forEach(chat => {
       if (chat.isMy === true) {
-        createContent(null, chat.formUser, chat.text)
+        createContent(null, chat.fromUser, chat.text)
       } else {
-        createContent(chat.formUser, null, chat.text, chat.isAdmin, chat.createTime)
+        createContent(chat.fromUser, null, chat.text, chat.isAdmin, chat.createTime)
       }
     })
   }
@@ -170,9 +154,11 @@ const init = () => {
   if (typeof (WebSocket) == "undefined") {
     showFailToast("您的浏览器不支持WebSocket")
   } else {
-    // todo 修改为后端启动地址和端口
-    let socketUrl = `ws://localhost:8105/api/websocket/${uid}/${stats.value.team.teamId}`
-    // let socketUrl = `ws://pt.kongshier.top:8105/api/websocket/${uid}/${stats.value.team.teamId}`
+    // 线下
+    // let socketUrl = `ws://localhost:8105/api/websocket/${uid}/${stats.value.chatUser.id}`
+    // todo 修改为线上
+    let socketUrl = `ws://47.121.118.209:8105/api/websocket/${uid}/${stats.value.team.teamId}`
+    console.log("目标：" + stats.value.chatUser.id)
     if (socket != null) {
       socket.close();
       socket = null;
@@ -204,20 +190,20 @@ const init = () => {
         let flag;
         if (stats.value.chatType === data.chatType) {
           // 单聊
-          flag = (uid === data.toUser?.id && stats.value.chatUser?.id === data.formUser?.id)
+          flag = (uid === data.toUser?.id && stats.value.chatUser?.id === data.fromUser?.id)
         }
         if ((stats.value.chatType === data.chatType)) {
           // 大厅
-          flag = (data.formUser?.id != uid)
+          flag = (data.fromUser?.id != uid)
         }
         // 队伍
         if (stats.value.chatType === data.chatType && data.teamId && stats.value.team.teamId === data.teamId) {
-          flag = (data.formUser?.id != uid)
+          flag = (data.fromUser?.id != uid)
         }
         if (flag) {
           stats.value.messages.push(data)
           // 构建消息内容
-          createContent(data.formUser, null, data.text, data.isAdmin, data.createTime)
+          createContent(data.fromUser, null, data.text, data.isAdmin, data.createTime)
         }
         nextTick(() => {
           const lastElement = chatRoom.value.lastElementChild

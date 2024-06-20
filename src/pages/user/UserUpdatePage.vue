@@ -62,8 +62,8 @@
 import {useRouter} from "vue-router";
 import {onMounted, ref} from "vue";
 import {showFailToast, showSuccessToast} from "vant";
-import {getCurrentUser} from "../services/user.ts";
-import myAxios from "../plugins/my-axios.js";
+import {getCurrentUser} from "../../services/user.ts";
+import myAxios from "../../plugins/my-axios.js";
 
 let router = useRouter();
 const fileList = ref([]);
@@ -103,7 +103,7 @@ const toEdit = (editKey: string, editName: string, editValue: string) => {
 const afterRead = async () => {
   let formData = new FormData();
   formData.append("file", fileList.value[0].file)
-  const res = await myAxios.post("/common/upload", formData, {
+  const res = await myAxios.post("/file/upload", formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
     }

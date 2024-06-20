@@ -54,7 +54,7 @@
 
 <script setup>
 import {onMounted, ref} from "vue";
-import myAxios from "../plugins/my-axios.js";
+import myAxios from "../../plugins/my-axios.js";
 import {showFailToast, showSuccessToast} from "vant";
 
 const loading = ref(true)
