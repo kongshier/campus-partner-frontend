@@ -28,7 +28,6 @@ MyBatis-Plus + MySQL + Redis** 等技术，使用 **WebSocket** 实现实时通�
 License Version 2.0开源协议。
 
 #### 前端地址:
-
 Gitee： https://gitee.com/kcsen/campus-partner-frontend
 
 Github： https://github.com/kongshier/campus-partner-frontend
@@ -37,6 +36,11 @@ Github： https://github.com/kongshier/campus-partner-frontend
 Gitee：https://gitee.com/kcsen/campus-backend-master
 
 GitHub：https://github.com/kongshier/campus-backend-master
+
+#### 管理系统
+Gitee：https://gitee.com/kcsen/campus-partner-admin
+
+Github：https://github.com/kongshier/campus-partner-admin
 
 ## 在线体验
 
