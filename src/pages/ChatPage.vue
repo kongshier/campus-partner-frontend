@@ -4,7 +4,11 @@
         :title="title"
         left-arrow
         @click-left="onClickLeft"
+        @click-right="showUserDetail(userId)"
     >
+      <template #right>
+        <van-icon class-prefix="my-icon" name="qita" color="#39a9ed"/>
+      </template>
     </van-nav-bar>
   </van-sticky>
   <div class="chat-container">
@@ -34,7 +38,7 @@ import myAxios from "../plugins/my-axios.js";
 const route = useRoute()
 const router = useRouter()
 const onClickLeft = () => {
-  router.push("/message")
+  router.push("/")
 };
 const stats = ref({
   user: {
@@ -73,10 +77,22 @@ let heartbeatTimer = null;
 const startHeartbeat = () => {
   heartbeatTimer = setInterval(() => {
     if (socket.readyState === WebSocket.OPEN) {
-      console.log("1")
       socket.send("PING");
     }
   }, heartbeatInterval);
+}
+
+// 从路由中拿到用户id
+const userId = route.query.id;
+
+// 显示用户信息
+const showUserDetail = (id) => {
+  router.push({
+    path: "/user/detail",
+    query: {
+      id: id
+    }
+  })
 }
 
 const stopHeartbeat = () => {
@@ -101,7 +117,7 @@ onMounted(async () => {
     title.value = stats.value.team.teamName
   } else {
     stats.value.chatType = stats.value.chatEnum.HALL_CHAT
-    title.value = "公共聊天室"
+    title.value = "大厅聊天室"
   }
   stats.value.user = await getCurrentUser()
 
@@ -114,7 +130,7 @@ onMounted(async () => {
         })
     privateMessage.data.data.forEach(chat => {
       if (chat.isMy === true) {
-        createContent(null, chat.fromUser, chat.text)
+        createContent(null, chat.formUser, chat.text)
       } else {
         createContent(chat.toUser, null, chat.text, null, chat.createTime)
       }
@@ -124,9 +140,9 @@ onMounted(async () => {
     const hallMessage = await myAxios.get("/chat/hallChat")
     hallMessage.data.data.forEach(chat => {
       if (chat.isMy === true) {
-        createContent(null, chat.fromUser, chat.text)
+        createContent(null, chat.formUser, chat.text)
       } else {
-        createContent(chat.fromUser, null, chat.text, chat.isAdmin, chat.createTime)
+        createContent(chat.formUser, null, chat.text, chat.isAdmin, chat.createTime)
       }
     })
   }
@@ -137,9 +153,9 @@ onMounted(async () => {
         })
     teamMessage.data.data.forEach(chat => {
       if (chat.isMy === true) {
-        createContent(null, chat.fromUser, chat.text)
+        createContent(null, chat.formUser, chat.text)
       } else {
-        createContent(chat.fromUser, null, chat.text, chat.isAdmin, chat.createTime)
+        createContent(chat.formUser, null, chat.text, chat.isAdmin, chat.createTime)
       }
     })
   }
@@ -155,10 +171,9 @@ const init = () => {
     showFailToast("您的浏览器不支持WebSocket")
   } else {
     // 线下
-    // let socketUrl = `ws://localhost:8105/api/websocket/${uid}/${stats.value.chatUser.id}`
+    let socketUrl = `ws://localhost:8105/api/websocket/${uid}/${stats.value.team.teamId}`
     // todo 修改为线上
-    let socketUrl = `ws://47.121.118.209:8105/api/websocket/${uid}/${stats.value.team.teamId}`
-    console.log("目标：" + stats.value.chatUser.id)
+    // let socketUrl = `ws://47.121.118.209:8105/api/websocket/${uid}/${stats.value.team.teamId}`
     if (socket != null) {
       socket.close();
       socket = null;
@@ -190,20 +205,20 @@ const init = () => {
         let flag;
         if (stats.value.chatType === data.chatType) {
           // 单聊
-          flag = (uid === data.toUser?.id && stats.value.chatUser?.id === data.fromUser?.id)
+          flag = (uid === data.toUser?.id && stats.value.chatUser?.id === data.formUser?.id)
         }
         if ((stats.value.chatType === data.chatType)) {
           // 大厅
-          flag = (data.fromUser?.id != uid)
+          flag = (data.formUser?.id != uid)
         }
         // 队伍
         if (stats.value.chatType === data.chatType && data.teamId && stats.value.team.teamId === data.teamId) {
-          flag = (data.fromUser?.id != uid)
+          flag = (data.formUser?.id != uid)
         }
         if (flag) {
           stats.value.messages.push(data)
           // 构建消息内容
-          createContent(data.fromUser, null, data.text, data.isAdmin, data.createTime)
+          createContent(data.formUser, null, data.text, data.isAdmin, data.createTime)
         }
         nextTick(() => {
           const lastElement = chatRoom.value.lastElementChild
@@ -267,7 +282,7 @@ const showUser = (id) => {
 }
 
 /**
- * 这个方法是用来将 json的聊天消息数据转换成 html的。
+ * 这个方法是用来将json的聊天消息数据转换成 html的。
  */
 const createContent = (remoteUser, nowUser, text, isAdmin, createTime) => {
   // 当前用户消息
@@ -288,7 +303,7 @@ const createContent = (remoteUser, nowUser, text, isAdmin, createTime) => {
      <div class="message other">
       <img :alt=${remoteUser.username} class="avatar" onclick="showUser(${remoteUser.id})" src=${remoteUser.avatarUrl}>
     <div class="info">
-      <span class="username">${remoteUser.username.length < 10 ? remoteUser.username : remoteUser.username}&nbsp;&nbsp;&nbsp;${createTime}</span>
+      <span class="username">${remoteUser.username.length < 10 ? remoteUser.username : remoteUser.username}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${createTime}</span>
       <p class="${isAdmin ? 'admin text' : 'text'}" >${text}</p>
     </div>
     </div>
@@ -339,7 +354,8 @@ window.showUser = showUser
   max-width: 200px;
   font-size: 12px;
   color: #999;
-  padding-bottom: 4px;
+  margin-top: -20px;
+  padding-bottom: 2px;
   white-space: nowrap;
   overflow: visible;
   background-color: #fff;
@@ -356,6 +372,7 @@ window.showUser = showUser
 }
 
 .text {
+  margin-top: 0;
   padding: 10px;
   border-radius: 10px;
   background-color: #eee;

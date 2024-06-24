@@ -19,7 +19,7 @@
               style="border-radius: 15px;background-color: #e8e8e8"
     >
       <template #thumb>
-        <van-image :src="user?.avatarUrl" round width="88" height="88"/>
+        <van-image :src="user?.avatarUrl" round width="88" height="88" @click="showUserDetail(user?.id)"></van-image>
       </template>
       <template #tags>
         <van-tag v-for="tag in user?.tags" plain type="danger" style="margin-right: 8px;margin-top: 8px">
@@ -56,6 +56,8 @@
 import {onMounted, ref} from "vue";
 import myAxios from "../../plugins/my-axios.js";
 import {showFailToast, showSuccessToast} from "vant";
+import UserCardList from "../../components/UserCardList.vue";
+import {useRouter} from "vue-router";
 
 const loading = ref(true)
 const userList = ref([])
@@ -93,6 +95,17 @@ const notAgreeFriend = async (userId) => {
   } else {
     showFailToast("同意失败," + res.data.description)
   }
+}
+let router = useRouter();
+// 用户详情
+const showUserDetail = (id) => {
+  console.log(11)
+  router.push({
+    path: "/user/detail",
+    query: {
+      id: id
+    }
+  })
 }
 
 </script>

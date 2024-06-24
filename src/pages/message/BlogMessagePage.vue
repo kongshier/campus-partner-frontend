@@ -3,7 +3,7 @@
         v-if="(!blogList || blogList.length===0) && loading===false"
         image="https://fastly.jsdelivr.net/npm/@vant/assets/custom-empty-image.png"
         image-size="80"
-        description="您关注的用户没有更新"
+        description="您还未发布博文帖子"
     />
     <van-loading vertical v-if="loading">
         <template #icon>

@@ -17,17 +17,17 @@
       <van-icon name="phone-o" style="">{{ ':' + user.phone }}</van-icon>
     </template>
     <template #num>
-      <!--      <van-button v-if="user.isFollow" size="mini" plain type="danger"-->
-      <!--                  style="width: 60px;height: 28px;margin-top: 10px"-->
-      <!--                  @click="followUser(user)"-->
-      <!--      >-->
-      <!--        取消关注-->
-      <!--      </van-button>-->
-      <!--      <van-button v-else size="mini" plain type="primary"-->
-      <!--                  style="width: 48px;height: 28px;margin-top: 10px"-->
-      <!--                  @click="followUser(user)">-->
-      <!--        关注-->
-      <!--      </van-button>-->
+      <van-button v-if="user.isFollow" size="mini" plain type="danger"
+                  style="width: 60px;height: 28px;margin-top: 10px"
+                  @click="followUser(user)"
+      >
+        取消关注
+      </van-button>
+      <van-button v-else size="mini" plain type="primary"
+                  style="width: 48px;height: 28px;margin-top: 10px"
+                  @click="followUser(user)">
+        关注
+      </van-button>
       <van-button size="mini" plain type="primary"
                   style="width: 48px;height: 28px;margin-top: 10px" @click="toChat(user)">
         私聊

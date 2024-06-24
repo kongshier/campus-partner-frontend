@@ -38,9 +38,8 @@ const onLoad = async () => {
     refreshing.value = false;
   }
   if (res.data.code === 0) {
-    res.data.data.forEach((sign: any) => {
-      signList.value.push(sign.signDate)
-    })
+    signList.value = res.data.data.map(sign => sign.signDate);
+    signList.value.reverse();
   }
   loading.value = false;
   finished.value = true;

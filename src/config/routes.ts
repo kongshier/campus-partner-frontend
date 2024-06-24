@@ -20,12 +20,13 @@ import UserTagPage from "../pages/user/UserTagPage.vue";
 import ForgetPasswordPage from "../pages/ForgetPasswordPage.vue";
 import AfterSignUp from "../pages/AfterSignUp.vue";
 import ChatPage from "../pages/ChatPage.vue";
+import PrivateChatPage from "../pages/message/PrivateChatPage.vue";
 import UserDetailPage from "../pages/user/UserDetailPage.vue";
 import UserFollowPage from "../pages/message/UserFollowPage.vue";
 import UserBlogCommentPage from "../pages/message/UserBlogCommentPage.vue";
 import UserFansPage from "../pages/message/UserFansPage.vue";
 import UserLikePage from "../pages/message/UserLikePage.vue";
-import UserFollowedBlogPage from "../pages/message/UserFollowedUserPage.vue";
+import BlogMessagePage from "../pages/message/BlogMessagePage.vue";
 import UpdatePasswordPage from "../pages/UpdatePasswordPage.vue";
 import UserFriendsPage from "../pages/user/UserFriendsPage.vue";
 import UserSignPage from "../pages/user/UserSignPage.vue";
@@ -59,10 +60,11 @@ const routes = [
     {path: '/user/follow', title: '我关注的用户', component: UserFollowPage},
     {path: '/user/comment', title: '我的评论', component: UserBlogCommentPage},
     {path: '/fans', title: '我的粉丝', component: UserFansPage},
-    {path: '/friends', title: '好友申请', component: UserFriendsPage},
-    {path: '/my/friends', title: '好友列表', component: UserMyFriendsPage},
+    {path: '/friends', title: '新好友', component: UserFriendsPage},
+    {path: '/my/friends', title: '我的好友', component: UserMyFriendsPage},
     {path: '/user/like', title: '赞', component: UserLikePage},
-    {path: '/user/follow/blog', title: '关注', component: UserFollowedBlogPage},
+    { path: "/private/list", title: "私聊用户", component: PrivateChatPage },
+    {path: '/blog/message', title: '博文消息', component: BlogMessagePage},
     {path: '/update/password', title: '修改密码', component: UpdatePasswordPage, meta: {layout: 'password'}}
 ]
 export default routes;

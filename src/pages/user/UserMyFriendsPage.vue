@@ -53,7 +53,6 @@ const userList = ref([])
 const friendStatus = ref([]);
 onMounted(async () => {
   let res = await myAxios.get("/friends/my/list");
-  console.log("申请列表", res.data.data);
   if (res?.data.code === 0) {
     res.data.data.forEach((user) => {
       if (user.tags) {
